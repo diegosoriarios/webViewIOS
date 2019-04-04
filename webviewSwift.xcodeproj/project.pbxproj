@@ -14,6 +14,7 @@
 		87A13A2A220CCE68002F5810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87A13A28220CCE68002F5810 /* LaunchScreen.storyboard */; };
 		87A13A35220CCE68002F5810 /* webviewSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A13A34220CCE68002F5810 /* webviewSwiftTests.swift */; };
 		87A13A40220CCE68002F5810 /* webviewSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A13A3F220CCE68002F5810 /* webviewSwiftUITests.swift */; };
+		87D6BAC222568D6300D46CB9 /* InternetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D6BAC122568D6300D46CB9 /* InternetTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		87A13A3B220CCE68002F5810 /* webviewSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = webviewSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		87A13A3F220CCE68002F5810 /* webviewSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = webviewSwiftUITests.swift; sourceTree = "<group>"; };
 		87A13A41220CCE68002F5810 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87D6BAC122568D6300D46CB9 /* InternetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				87A13A26220CCE68002F5810 /* Assets.xcassets */,
 				87A13A28220CCE68002F5810 /* LaunchScreen.storyboard */,
 				87A13A2B220CCE68002F5810 /* Info.plist */,
+				87D6BAC122568D6300D46CB9 /* InternetTest.swift */,
 			);
 			path = webviewSwift;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			files = (
 				87A13A22220CCE67002F5810 /* ViewController.swift in Sources */,
 				87A13A20220CCE67002F5810 /* AppDelegate.swift in Sources */,
+				87D6BAC222568D6300D46CB9 /* InternetTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

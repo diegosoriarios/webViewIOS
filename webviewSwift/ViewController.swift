@@ -15,8 +15,12 @@ class ViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let myURL = URL(string:"https://diegosoriarios.github.io")
-        let myRequest = URLRequest(url: myURL!)
-        webView.load(myRequest)
+        if ReachabilityTest.isConnectedToNetwork() {
+            let myURL = URL(string:"https://diegosoriarios.github.io")
+            let myRequest = URLRequest(url: myURL!)
+            webView.load(myRequest)
+        }else{
+            print("No internet connection available")
+        }
     }
 }
