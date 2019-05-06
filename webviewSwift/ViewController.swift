@@ -21,6 +21,8 @@ class ViewController: UIViewController, WKUIDelegate {
             webView.load(myRequest)
         }else{
             print("No internet connection available")
+            let myHTMLString: String! = "<h1 style=\"text-align: center\">No internet connection available!</h1>"
+            webView.loadHTMLString(myHTMLString, baseURL: nil)
         }
     }
 }
