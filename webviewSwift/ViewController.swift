@@ -17,12 +17,16 @@ class ViewController: UIViewController, WKUIDelegate {
         
         if ReachabilityTest.isConnectedToNetwork() {
             let myURL = URL(string:"https://admin:admin@ccstore-prod-zdoa.oracleoutsourcing.com")
-            let myRequest = URLRequest(url: myURL!)
+            let myRequest = URLRequest(url: myURL!)  
             webView.load(myRequest)
         }else{
             print("No internet connection available")
-            let myHTMLString: String! = "<h1 style=\"text-align: center\">No internet connection available!</h1>"
-            webView.loadHTMLString(myHTMLString, baseURL: nil)
+            let controller:SecondViewController = self.storyboard!.instantiateViewController(withIdentifier: "NoConnection") as! SecondViewController
+            controller.view.frame = self.view.bounds;
+            controller.willMove(toParent: self)
+            self.view.addSubview(controller.view)
+            self.addChild(controller)
+            controller.didMove(toParent: self)
         }
     }
     
