@@ -16,7 +16,7 @@ class ViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
-            let myURL = URL(string:"https://diegosoriarios.github.io")
+            let myURL = URL(string:"https://admin:admin@ccstore-prod-zdoa.oracleoutsourcing.com")
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
         }else{
@@ -25,4 +25,6 @@ class ViewController: UIViewController, WKUIDelegate {
             webView.loadHTMLString(myHTMLString, baseURL: nil)
         }
     }
+    
+    
 }
