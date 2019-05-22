@@ -2,26 +2,19 @@ import UIKit
 import WebKit
 
 class ViewController: UIViewController, WKUIDelegate {
+    @IBOutlet weak var logo: UIImageView!
     
-    var webView: WKWebView!
-    
-    override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
-        view = webView
-    }
-
     override func viewDidLoad() {
-        super.viewDidLoad()
+        let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
+        pulseAnimation.duration = 1
+        pulseAnimation.repeatCount = 100
+        pulseAnimation.autoreverses = true
+        pulseAnimation.fromValue = 1.05
+        pulseAnimation.toValue = 0.7
+        logo.layer.add(pulseAnimation, forKey: "scale")
         
-        if ReachabilityTest.isConnectedToNetwork() {
-            let myURL = URL(string:"https://admin:admin@ccstore-prod-zdoa.oracleoutsourcing.com")
-            let myRequest = URLRequest(url: myURL!)  
-            webView.load(myRequest)
-        }else{
-            print("No internet connection available")
-            let controller:SecondViewController = self.storyboard!.instantiateViewController(withIdentifier: "NoConnection") as! SecondViewController
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) { 
+            let controller:FirstViewController = self.storyboard!.instantiateViewController(withIdentifier: "Main") as! FirstViewController
             controller.view.frame = self.view.bounds;
             controller.willMove(toParent: self)
             self.view.addSubview(controller.view)

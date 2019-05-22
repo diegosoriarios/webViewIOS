@@ -9,11 +9,15 @@
 import UIKit
 
 class SecondViewController: UIViewController {
-
+    
+    @IBOutlet weak var btnRetry: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        btnRetry.layer.borderWidth = 2.0
+        btnRetry.layer.borderColor = (UIColor(red: 169, green: 52, blue: 79, alpha: 1)).cgColor
     }
     
 
@@ -27,7 +31,7 @@ class SecondViewController: UIViewController {
     }
     */
     @IBAction func Recarregar(_ sender: Any) {
-        let controller:ViewController = self.storyboard!.instantiateViewController(withIdentifier: "Main") as! ViewController
+        let controller:FirstViewController = self.storyboard!.instantiateViewController(withIdentifier: "Main") as! FirstViewController
         controller.view.frame = self.view.bounds;
         controller.willMove(toParent: self)
         self.view.addSubview(controller.view)
