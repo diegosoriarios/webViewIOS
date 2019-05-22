@@ -19,6 +19,12 @@ class FirstViewController: UIViewController, WKUIDelegate {
             let myURL = URL(string:"https://admin:admin@ccstore-prod-zdoa.oracleoutsourcing.com")
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
+            
+            webView.allowsBackForwardNavigationGestures = true
+            
+            if webView.canGoBack {
+                webView.goBack()
+            }
         }else{
             print("No internet connection available")
             let controller:SecondViewController = self.storyboard!.instantiateViewController(withIdentifier: "NoConnection") as! SecondViewController
