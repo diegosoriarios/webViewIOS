@@ -5,6 +5,7 @@ class ViewController: UIViewController, WKUIDelegate {
     @IBOutlet weak var logo: UIImageView!
     
     override func viewDidLoad() {
+        
         let pulseAnimation = CABasicAnimation(keyPath: "transform.scale")
         pulseAnimation.duration = 1
         pulseAnimation.repeatCount = 100
@@ -22,6 +23,7 @@ class ViewController: UIViewController, WKUIDelegate {
             controller.didMove(toParent: self)
         }
     }
+    
     
     
 }
