@@ -507,7 +507,7 @@
 					"-Obj",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chinainbox.webview;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.digipronto.ChinaInBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -534,7 +534,7 @@
 					"-Obj",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.chinainbox.webview;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.digipronto.ChinaInBox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

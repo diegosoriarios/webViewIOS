@@ -16,7 +16,7 @@ class FirstViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
-            let myURL = URL(string:"https://admin:admin@ccstore-prod-zdoa.oracleoutsourcing.com")
+            let myURL = URL(string:"https://www.chinainbox.com.br/")
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
             
