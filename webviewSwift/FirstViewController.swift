@@ -16,7 +16,7 @@ class FirstViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
-            let myURL = URL(string:"https://www.chinainbox.com.br/")
+            let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/gendai/cep")
             let myRequest = URLRequest(url: myURL!)
             webView.load(myRequest)
             
@@ -35,6 +35,4 @@ class FirstViewController: UIViewController, WKUIDelegate {
             controller.didMove(toParent: self)
         }
     }
-    
-    
 }
