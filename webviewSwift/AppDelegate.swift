@@ -9,6 +9,7 @@
 import UIKit
 import PushIOManager
 import UserNotifications
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -71,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         PushIOManager.sharedInstance().registerUserID(deviceId)
         let userID = PushIOManager.sharedInstance().getUserID()
         print("Teste: \(String(describing: userID))")
-        
+        FirebaseApp.configure()
         return true
     }
     
