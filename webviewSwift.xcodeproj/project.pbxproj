@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87137A39229F180900FB717C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87137A38229F180900FB717C /* AppStoreReviewManager.swift */; };
 		8742B2F0229EE50F00F9050E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */; };
 		8742B2F1229EE50F00F9050E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */; };
 		8742B2F2229EE50F00F9050E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */; };
@@ -54,6 +55,7 @@
 		2704465AD77F54482CCA0C4B /* Pods-webviewSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-webviewSwift.release.xcconfig"; path = "Target Support Files/Pods-webviewSwift/Pods-webviewSwift.release.xcconfig"; sourceTree = "<group>"; };
 		7683607749529A074B811CC9 /* Pods-webviewSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-webviewSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-webviewSwiftUITests/Pods-webviewSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		79974DAE705786824ACA6949 /* Pods-webviewSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-webviewSwiftTests.release.xcconfig"; path = "Target Support Files/Pods-webviewSwiftTests/Pods-webviewSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
+		87137A38229F180900FB717C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
 		8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		877548E4228CD6340063497C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		87770ED9228F7A0B00D0E0BA /* pushio_config_debug.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pushio_config_debug.json; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				87D6BAC122568D6300D46CB9 /* InternetTest.swift */,
 				877548E4228CD6340063497C /* SecondViewController.swift */,
 				87C419D0228F2C8200DCA33C /* FirstViewController.swift */,
+				87137A38229F180900FB717C /* AppStoreReviewManager.swift */,
 			);
 			path = webviewSwift;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				87A13A22220CCE67002F5810 /* ViewController.swift in Sources */,
 				87A13A20220CCE67002F5810 /* AppDelegate.swift in Sources */,
 				87D6BAC222568D6300D46CB9 /* InternetTest.swift in Sources */,
+				87137A39229F180900FB717C /* AppStoreReviewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
