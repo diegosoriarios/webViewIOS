@@ -22,6 +22,12 @@ class FirstViewController: UIViewController, WKUIDelegate {
     }
     
     override func viewDidLoad() {
+        let calendar = Calendar.current
+        if(calendar.component(.day, from: Date()) == 15 || calendar.component(.day, from: Date()) == 30) {
+            showReview()
+        }
+        
+        
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
@@ -40,7 +46,6 @@ class FirstViewController: UIViewController, WKUIDelegate {
             if webView.canGoBack {
                 webView.goBack()
             }
-            AppStoreReviewManager().showReviewView(afterMinimumLaunchCount: 3)
         }else{
             print("No internet connection available")
             let controller:SecondViewController = self.storyboard!.instantiateViewController(withIdentifier: "NoConnection") as! SecondViewController

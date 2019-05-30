@@ -73,6 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userID = PushIOManager.sharedInstance().getUserID()
         print("Teste: \(String(describing: userID))")
         FirebaseApp.configure()
+        incrementAppRuns()
         return true
     }
     
