@@ -5,7 +5,12 @@ class FirstViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
     
+    func applicationWillTerminate(_ application: UIApplication) {
+        
+    }
+    
     override func loadView() {
+        restoreCookies()
         /*
          CONFIGURATION
         */
@@ -46,6 +51,7 @@ class FirstViewController: UIViewController, WKUIDelegate {
             if webView.canGoBack {
                 webView.goBack()
             }
+            storeCookies()
         }else{
             print("No internet connection available")
             let controller:SecondViewController = self.storyboard!.instantiateViewController(withIdentifier: "NoConnection") as! SecondViewController
@@ -56,6 +62,33 @@ class FirstViewController: UIViewController, WKUIDelegate {
             controller.didMove(toParent: self)
         }
     }
+
+    func storeCookies() {
+        let cookiesStorage = HTTPCookieStorage.shared
+        let userDefaults = UserDefaults.standard
+        
+        let serverBaseUrl = "http://example.com"
+        var cookieDict = [String : AnyObject]()
+        
+        for cookie in cookiesStorage.cookies(for: NSURL(string: serverBaseUrl)! as URL)! {
+            cookieDict[cookie.name] = cookie.properties as AnyObject?
+        }
+        
+        userDefaults.set(cookieDict, forKey: "cookiesKey")
+    }
     
+    func restoreCookies() {
+        let cookiesStorage = HTTPCookieStorage.shared
+        let userDefaults = UserDefaults.standard
+        
+        if let cookieDictionary = userDefaults.dictionary(forKey: "cookiesKey") {
+            
+            for (_, cookieProperties) in cookieDictionary {
+                if let cookie = HTTPCookie(properties: cookieProperties as! [HTTPCookiePropertyKey : Any] ) {
+                    cookiesStorage.setCookie(cookie)
+                }
+            }
+        }
+    }
     
 }
