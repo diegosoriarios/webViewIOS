@@ -1,7 +1,7 @@
 import UIKit
 import WebKit
 
-class FirstViewController: UIViewController, WKUIDelegate {
+class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
     
     var webView: WKWebView!
     let contentController = WKUserContentController()
@@ -17,7 +17,7 @@ class FirstViewController: UIViewController, WKUIDelegate {
             forMainFrameOnly: true
         )
         contentController.addUserScript(userScript)
-        //contentController.add(self as! WKScriptMessageHandler, name: "rateModal")
+        contentController.add(self as WKScriptMessageHandler, name: "rateModal")
         
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
