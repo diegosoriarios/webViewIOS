@@ -4,20 +4,53 @@ import WebKit
 class FirstViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
+    let contentController = WKUserContentController()
     
     override func loadView() {
+        restoreCookies()
+        /*
+         CONFIGURATION
+        */
+        let userScript = WKUserScript(
+            source: "mobileHeader()",
+            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
+            forMainFrameOnly: true
+        )
+        contentController.addUserScript(userScript)
+        //contentController.add(self as! WKScriptMessageHandler, name: "rateModal")
+        
+        let preferences = WKPreferences()
+        preferences.javaScriptEnabled = true
         let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.preferences = preferences
+        webConfiguration.userContentController = contentController
+        webConfiguration.websiteDataStore = WKWebsiteDataStore.default()
+        
+        
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
         view = webView
     }
     
     override func viewDidLoad() {
+        /*
+        let calendar = Calendar.current
+        if(calendar.component(.day, from: Date()) == 15 || calendar.component(.day, from: Date()) == 30) {
+            showReview()
+        }*/
+        
+        
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
             let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/gendai/cep")
             let myRequest = URLRequest(url: myURL!)
+            
+            let contentController = WKUserContentController()
+            let js = "javascript: localStorage.setItem('key', 'value')"
+            let userScript = WKUserScript(source: js, injectionTime: WKUserScriptInjectionTime.atDocumentStart, forMainFrameOnly: false)
+            contentController.addUserScript(userScript)
+            
             webView.load(myRequest)
             
             webView.allowsBackForwardNavigationGestures = true
@@ -25,6 +58,7 @@ class FirstViewController: UIViewController, WKUIDelegate {
             if webView.canGoBack {
                 webView.goBack()
             }
+            storeCookies()
         }else{
             print("No internet connection available")
             let controller:SecondViewController = self.storyboard!.instantiateViewController(withIdentifier: "NoConnection") as! SecondViewController
@@ -35,4 +69,39 @@ class FirstViewController: UIViewController, WKUIDelegate {
             controller.didMove(toParent: self)
         }
     }
+
+    func storeCookies() {
+        let cookiesStorage = HTTPCookieStorage.shared
+        let userDefaults = UserDefaults.standard
+        
+        let serverBaseUrl = "http://example.com"
+        var cookieDict = [String : AnyObject]()
+        
+        for cookie in cookiesStorage.cookies(for: NSURL(string: serverBaseUrl)! as URL)! {
+            cookieDict[cookie.name] = cookie.properties as AnyObject?
+        }
+        
+        userDefaults.set(cookieDict, forKey: "cookiesKey")
+    }
+    
+    func restoreCookies() {
+        let cookiesStorage = HTTPCookieStorage.shared
+        let userDefaults = UserDefaults.standard
+        
+        if let cookieDictionary = userDefaults.dictionary(forKey: "cookiesKey") {
+            
+            for (_, cookieProperties) in cookieDictionary {
+                if let cookie = HTTPCookie(properties: cookieProperties as! [HTTPCookiePropertyKey : Any] ) {
+                    cookiesStorage.setCookie(cookie)
+                }
+            }
+        }
+    }
+    
+    func userContentController(_ userController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "rateModal" {
+            print("Ta funcionando")
+        }
+    }
+    
 }
