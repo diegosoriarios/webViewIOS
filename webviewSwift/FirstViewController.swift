@@ -4,20 +4,26 @@ import WebKit
 class FirstViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
-    
-    func applicationWillTerminate(_ application: UIApplication) {
-        
-    }
+    let contentController = WKUserContentController()
     
     override func loadView() {
         restoreCookies()
         /*
          CONFIGURATION
         */
+        let userScript = WKUserScript(
+            source: "mobileHeader()",
+            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
+            forMainFrameOnly: true
+        )
+        contentController.addUserScript(userScript)
+        contentController.add(self as! WKScriptMessageHandler, name: "rateAction")
+        
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences = preferences
+        webConfiguration.userContentController = contentController
         webConfiguration.websiteDataStore = WKWebsiteDataStore.default()
         
         
@@ -27,10 +33,11 @@ class FirstViewController: UIViewController, WKUIDelegate {
     }
     
     override func viewDidLoad() {
+        /*
         let calendar = Calendar.current
         if(calendar.component(.day, from: Date()) == 15 || calendar.component(.day, from: Date()) == 30) {
             showReview()
-        }
+        }*/
         
         
         super.viewDidLoad()
@@ -88,6 +95,12 @@ class FirstViewController: UIViewController, WKUIDelegate {
                     cookiesStorage.setCookie(cookie)
                 }
             }
+        }
+    }
+    
+    func userContentController(_ userController: WKUserContentController, didReceive message: WKScriptMessage) {
+        if message.name == "rateAction" {
+            print("Ta funcionando")
         }
     }
     
