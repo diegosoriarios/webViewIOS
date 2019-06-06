@@ -1,29 +1,45 @@
 import UIKit
 import WebKit
 
-class FirstViewController: UIViewController, WKUIDelegate {
+class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
     
     var webView: WKWebView!
-    let contentController = WKUserContentController()
     
-    override func loadView() {
-        restoreCookies()
-        /*
-         CONFIGURATION
-        */
+    
+    private func setupWebView() {
+        
+        let contentController = WKUserContentController()
         let userScript = WKUserScript(
             source: "mobileHeader()",
             injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
             forMainFrameOnly: true
         )
         contentController.addUserScript(userScript)
-        contentController.add(self as! WKScriptMessageHandler, name: "rateAction")
+        contentController.add(self as WKScriptMessageHandler, name: "rateAction")
+        
+        let config = WKWebViewConfiguration()
+        config.userContentController = contentController
+        
+        WKWebViewConfiguration().userContentController = contentController
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    
+    override func loadView() {
+        restoreCookies()
+        /*
+         CONFIGURATION
+        */
         
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences = preferences
-        webConfiguration.userContentController = contentController
+        self.setupWebView()
         webConfiguration.websiteDataStore = WKWebsiteDataStore.default()
         
         
@@ -43,7 +59,8 @@ class FirstViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
-            let myURL = URL(string:"https://www.chinainbox.com.br/")
+            //let myURL = URL(string:"https://www.chinainbox.com.br/")
+            let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/home")
             let myRequest = URLRequest(url: myURL!)
             
             let contentController = WKUserContentController()
