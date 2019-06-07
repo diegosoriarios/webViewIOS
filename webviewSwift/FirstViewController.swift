@@ -5,24 +5,6 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
     
     var webView: WKWebView!
     
-    
-    private func setupWebView() {
-        
-        let contentController = WKUserContentController()
-        let userScript = WKUserScript(
-            source: "mobileHeader()",
-            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
-            forMainFrameOnly: true
-        )
-        contentController.addUserScript(userScript)
-        contentController.add(self as WKScriptMessageHandler, name: "rateAction")
-        
-        let config = WKWebViewConfiguration()
-        config.userContentController = contentController
-        
-        WKWebViewConfiguration().userContentController = contentController
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,9 +21,9 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
         preferences.javaScriptEnabled = true
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences = preferences
-        self.setupWebView()
+        webConfiguration.userContentController.add(self, name:"interOp")
         webConfiguration.websiteDataStore = WKWebsiteDataStore.default()
-        
+         
         
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
@@ -115,10 +97,10 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
         }
     }
     
-    func userContentController(_ userController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if message.name == "rateAction" {
-            print("Ta funcionando")
-        }
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        let sendDate = message.body as! NSDictionary
+        print(sendDate)
+        webView!.evaluateJavaScript("rateApp()", completionHandler: nil)
     }
     
 }
