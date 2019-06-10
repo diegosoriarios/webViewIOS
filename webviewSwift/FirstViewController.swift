@@ -4,26 +4,24 @@ import WebKit
 class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
     
     var webView: WKWebView!
-    let contentController = WKUserContentController()
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     
     override func loadView() {
         restoreCookies()
         /*
          CONFIGURATION
-        */
-        let userScript = WKUserScript(
-            source: "mobileHeader()",
-            injectionTime: WKUserScriptInjectionTime.atDocumentEnd,
-            forMainFrameOnly: true
-        )
-        contentController.addUserScript(userScript)
-        contentController.add(self as WKScriptMessageHandler, name: "rateModal")
+         */
         
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = true
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.preferences = preferences
-        webConfiguration.userContentController = contentController
+        webConfiguration.userContentController.add(self, name:"interOp")
         webConfiguration.websiteDataStore = WKWebsiteDataStore.default()
         
         
@@ -34,10 +32,10 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
     
     override func viewDidLoad() {
         /*
-        let calendar = Calendar.current
-        if(calendar.component(.day, from: Date()) == 15 || calendar.component(.day, from: Date()) == 30) {
-            showReview()
-        }*/
+         let calendar = Calendar.current
+         if(calendar.component(.day, from: Date()) == 15 || calendar.component(.day, from: Date()) == 30) {
+         showReview()
+         }*/
         
         
         super.viewDidLoad()
@@ -69,7 +67,7 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
             controller.didMove(toParent: self)
         }
     }
-
+    
     func storeCookies() {
         let cookiesStorage = HTTPCookieStorage.shared
         let userDefaults = UserDefaults.standard
@@ -98,10 +96,10 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
         }
     }
     
-    func userContentController(_ userController: WKUserContentController, didReceive message: WKScriptMessage) {
-        if message.name == "rateModal" {
-            print("Ta funcionando")
-        }
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        let sendDate = message.body as! NSDictionary
+        print(sendDate)
+        webView!.evaluateJavaScript("rateApp()", completionHandler: nil)
     }
     
 }
