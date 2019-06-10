@@ -41,8 +41,8 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
-            //let myURL = URL(string:"https://www.chinainbox.com.br/")
-            let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/home")
+            let myURL = URL(string:"https://www.chinainbox.com.br/")
+            //let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/home")
             let myRequest = URLRequest(url: myURL!)
             
             let contentController = WKUserContentController()
