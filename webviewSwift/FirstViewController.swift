@@ -99,6 +99,7 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         let sendDate = message.body as! NSDictionary
         print(sendDate)
+        showReview()
         webView!.evaluateJavaScript("rateApp()", completionHandler: nil)
     }
     
