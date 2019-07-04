@@ -1,9 +1,11 @@
 import UIKit
 import WebKit
+import PushIOManager
 
 class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
     
     var webView: WKWebView!
+    let myURL = URL(string:"https://www.chinainbox.com.br/")
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -12,7 +14,6 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
 
     
     override func loadView() {
-        restoreCookies()
         /*
          CONFIGURATION
         */
@@ -31,17 +32,10 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
     }
     
     override func viewDidLoad() {
-        /*
-        let calendar = Calendar.current
-        if(calendar.component(.day, from: Date()) == 15 || calendar.component(.day, from: Date()) == 30) {
-            showReview()
-        }*/
-        
         
         super.viewDidLoad()
         
         if ReachabilityTest.isConnectedToNetwork() {
-            let myURL = URL(string:"https://www.chinainbox.com.br/")
             //let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/home")
             let myRequest = URLRequest(url: myURL!)
             
@@ -57,7 +51,6 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
             if webView.canGoBack {
                 webView.goBack()
             }
-            storeCookies()
         }else{
             print("No internet connection available")
             let controller:SecondViewController = self.storyboard!.instantiateViewController(withIdentifier: "NoConnection") as! SecondViewController
@@ -70,30 +63,25 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
     }
 
     func storeCookies() {
-        let cookiesStorage = HTTPCookieStorage.shared
-        let userDefaults = UserDefaults.standard
-        
-        let serverBaseUrl = "http://example.com"
-        var cookieDict = [String : AnyObject]()
-        
-        for cookie in cookiesStorage.cookies(for: NSURL(string: serverBaseUrl)! as URL)! {
-            cookieDict[cookie.name] = cookie.properties as AnyObject?
+        guard let cookies = HTTPCookieStorage.shared.cookies else {
+            return
         }
-        
-        userDefaults.set(cookieDict, forKey: "cookiesKey")
+        let array = cookies.compactMap { (cookie) -> [HTTPCookiePropertyKey: Any]? in
+            cookie.properties
+        }
+        UserDefaults.standard.set(array, forKey: "cookies")
+        UserDefaults.standard.synchronize()
     }
     
     func restoreCookies() {
-        let cookiesStorage = HTTPCookieStorage.shared
-        let userDefaults = UserDefaults.standard
-        
-        if let cookieDictionary = userDefaults.dictionary(forKey: "cookiesKey") {
-            
-            for (_, cookieProperties) in cookieDictionary {
-                if let cookie = HTTPCookie(properties: cookieProperties as! [HTTPCookiePropertyKey : Any] ) {
-                    cookiesStorage.setCookie(cookie)
-                }
+        guard let cookies = UserDefaults.standard.value(forKey: "cookies") as? [[HTTPCookiePropertyKey: Any]] else {
+            return
+        }
+        cookies.forEach { (cookie) in
+            guard let cookie = HTTPCookie.init(properties: cookie) else {
+                return
             }
+            HTTPCookieStorage.shared.setCookie(cookie)
         }
     }
     
@@ -104,4 +92,11 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
         webView!.evaluateJavaScript("rateApp()", completionHandler: nil)
     }
     
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        restoreCookies()
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        storeCookies()
+    }
 }

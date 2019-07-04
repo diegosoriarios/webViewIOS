@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
         #if DEBUG
             PushIOManager.sharedInstance().setLoggingEnabled(true);
@@ -36,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var accountToken: String
         
         #if DEBUG
-            apiKey = "ABEoyBU7LkVmw8eKE3t4M5UUc"
+            apiKey = "ABEqjD9BR-qkxrzcV7Ots1vAc"
             accountToken = "ABEs2Vod4dLE-93sY1fXqlYsg"
         #else
-            apiKey = "ABEpoBVsab4MiZ8iHbd2KFbMI"
+            apiKey = "ABEn8DUv9Mlyh0sURdhAfla1g"
             accountToken = "ABEs2Vod4dLE-93sY1fXqlYsg"
         #endif
         
@@ -57,6 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     try PushIOManager.sharedInstance()?.registerApp(completionHandler: {(regError, response) in
                         if(regError == nil) {
                             print("Registration Sucessful")
+                            print("Registered \(PushIOManager.sharedInstance().registerUserID(deviceToken))")
+                            print("Registered \(String(describing: PushIOManager.sharedInstance()?.getUserID()))")
                         } else {
                             print("Unable to register, reason \(String(describing: regError))")
                         }
@@ -67,11 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         })
         
-        PushIOManager.sharedInstance()?.didFinishLaunching(options: launchOptions)
-        let deviceId = UIDevice.current.identifierForVendor?.uuidString
-        PushIOManager.sharedInstance().registerUserID(deviceId)
-        let userID = PushIOManager.sharedInstance().getUserID()
-        print("Teste: \(String(describing: userID))")
+        UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
         incrementAppRuns()
         return true

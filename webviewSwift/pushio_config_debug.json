@@ -1,1 +1,1 @@
-{"pushio":{"appName":"app_china_in_box","platformName":"AppiOSDev","platform_type":"apns","apiKey":"ABEoyBU7LkVmw8eKE3t4M5UUc","apiHost":"api.pushio.com","bundleId":"com.chinainbox.stage","accountToken":"ABEs2Vod4dLE-93sY1fXqlYsg","conversionUrl":null,"riAppId":"4000025"}}
+{"pushio":{"appName":"AppChina","platformName":"iOS Development","platform_type":"apns","apiKey":"ABEqjD9BR-qkxrzcV7Ots1vAc","apiHost":"api.pushio.com","accountToken":"ABEs2Vod4dLE-93sY1fXqlYsg","conversionUrl":"http://info.chinainbox.com.br/pub/cct","riAppId":"8000025"}}
