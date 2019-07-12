@@ -37,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var accountToken: String
         
         #if DEBUG
-            apiKey = "ABEqjD9BR-qkxrzcV7Ots1vAc"
+            apiKey = "ABEt4DdjqCf8udZRoxR9vDBnI"
             accountToken = "ABEs2Vod4dLE-93sY1fXqlYsg"
         #else
-            apiKey = "ABEn8DUv9Mlyh0sURdhAfla1g"
+            apiKey = "ABEnS7YM9vHoIfcLMOzkR-If0"
             accountToken = "ABEs2Vod4dLE-93sY1fXqlYsg"
         #endif
         
