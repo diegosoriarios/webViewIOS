@@ -5,7 +5,7 @@ import PushIOManager
 class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
     
     var webView: WKWebView!
-    //let myURL = URL(string:"https://www.chinainbox.com.br/")
+    let myURL = URL(string:"https://www.chinainbox.com.br/")
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -37,7 +37,6 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
         
         if ReachabilityTest.isConnectedToNetwork() {
             //let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/home")
-            let myURL = URL(string:"https://admin:admin@ccstore-stage-zdoa.oracleoutsourcing.com/gendai/cep")
             let myRequest = URLRequest(url: myURL!)
             
             let contentController = WKUserContentController()
