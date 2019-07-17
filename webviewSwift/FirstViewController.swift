@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import PushIOManager
 
 class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandler {
     
@@ -97,10 +98,19 @@ class FirstViewController: UIViewController, WKUIDelegate, WKScriptMessageHandle
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        let sendDate = message.body as! NSDictionary
-        print(sendDate)
-        showReview()
-        webView!.evaluateJavaScript("rateApp()", completionHandler: nil)
+        let data = message.body as! NSDictionary
+        let email = data["email"] as! String
+        if(email.isEmpty) {
+            print("Show rate modal")
+            showReview()
+            webView!.evaluateJavaScript("rateApp()", completionHandler: nil)
+        } else {
+            print(email)
+            let deviceToken = email
+            print("Registration Sucessful")
+            print("Registered \(PushIOManager.sharedInstance().registerUserID(deviceToken))")
+            print("Registered \(String(describing: PushIOManager.sharedInstance()?.getUserID()))")
+        }
     }
     
 }

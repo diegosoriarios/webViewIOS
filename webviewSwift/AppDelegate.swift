@@ -36,11 +36,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var accountToken: String
         
         #if DEBUG
-            apiKey = "ABEoyBU7LkVmw8eKE3t4M5UUc"
-            accountToken = "ABEs2Vod4dLE-93sY1fXqlYsg"
+            apiKey = "ABEkHtKmETYlp18AtmtPePxcM"
+            accountToken = "ABEkZImuwAycobNXj3k9dLNDM"
         #else
-            apiKey = "ABEpoBVsab4MiZ8iHbd2KFbMI"
-            accountToken = "ABEs2Vod4dLE-93sY1fXqlYsg"
+            apiKey = "ABEmLsZwDpym4ediWuPAq9vQE"
+            accountToken = "ABEkZImuwAycobNXj3k9dLNDM"
         #endif
         
         do {
@@ -56,7 +56,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 do {
                     try PushIOManager.sharedInstance()?.registerApp(completionHandler: {(regError, response) in
                         if(regError == nil) {
-                            print("Registration Sucessful")
+                            /*print("Registration Sucessful")
+                            print("Registered \(PushIOManager.sharedInstance().registerUserID(deviceToken))")
+                            print("Registered \(String(describing: PushIOManager.sharedInstance()?.getUserID()))")*/
+                            print("Wait for it")
                         } else {
                             print("Unable to register, reason \(String(describing: regError))")
                         }
@@ -67,11 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         })
         
-        PushIOManager.sharedInstance()?.didFinishLaunching(options: launchOptions)
-        let deviceId = UIDevice.current.identifierForVendor?.uuidString
-        PushIOManager.sharedInstance().registerUserID(deviceId)
-        let userID = PushIOManager.sharedInstance().getUserID()
-        print("Teste: \(String(describing: userID))")
+        UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
         incrementAppRuns()
         return true
