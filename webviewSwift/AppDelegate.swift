@@ -57,9 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 do {
                     try PushIOManager.sharedInstance()?.registerApp(completionHandler: {(regError, response) in
                         if(regError == nil) {
-                            print("Registration Sucessful")
+                            /*print("Registration Sucessful")
                             print("Registered \(PushIOManager.sharedInstance().registerUserID(deviceToken))")
-                            print("Registered \(String(describing: PushIOManager.sharedInstance()?.getUserID()))")
+                            print("Registered \(String(describing: PushIOManager.sharedInstance()?.getUserID()))")*/
                         } else {
                             print("Unable to register, reason \(String(describing: regError))")
                         }
