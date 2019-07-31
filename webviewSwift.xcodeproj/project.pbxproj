@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8707CC9922AEE7700026D86A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8707CC9822AEE7700026D86A /* GoogleService-Info.plist */; };
 		87137A39229F180900FB717C /* AppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87137A38229F180900FB717C /* AppStoreReviewManager.swift */; };
+		8742B2F0229EE50F00F9050E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */; };
+		8742B2F1229EE50F00F9050E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */; };
+		8742B2F2229EE50F00F9050E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */; };
 		877548E5228CD6340063497C /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877548E4228CD6340063497C /* SecondViewController.swift */; };
 		87770EDB228F7A0B00D0E0BA /* pushio_config_debug.json in Resources */ = {isa = PBXBuildFile; fileRef = 87770ED9228F7A0B00D0E0BA /* pushio_config_debug.json */; };
 		87770EDC228F7A0B00D0E0BA /* pushio_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 87770EDA228F7A0B00D0E0BA /* pushio_config.json */; };
@@ -53,8 +55,8 @@
 		2704465AD77F54482CCA0C4B /* Pods-webviewSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-webviewSwift.release.xcconfig"; path = "Target Support Files/Pods-webviewSwift/Pods-webviewSwift.release.xcconfig"; sourceTree = "<group>"; };
 		7683607749529A074B811CC9 /* Pods-webviewSwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-webviewSwiftUITests.release.xcconfig"; path = "Target Support Files/Pods-webviewSwiftUITests/Pods-webviewSwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		79974DAE705786824ACA6949 /* Pods-webviewSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-webviewSwiftTests.release.xcconfig"; path = "Target Support Files/Pods-webviewSwiftTests/Pods-webviewSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
-		8707CC9822AEE7700026D86A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		87137A38229F180900FB717C /* AppStoreReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewManager.swift; sourceTree = "<group>"; };
+		8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		877548E4228CD6340063497C /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		87770ED9228F7A0B00D0E0BA /* pushio_config_debug.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pushio_config_debug.json; sourceTree = "<group>"; };
 		87770EDA228F7A0B00D0E0BA /* pushio_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pushio_config.json; sourceTree = "<group>"; };
@@ -163,7 +165,7 @@
 		87A13A1E220CCE67002F5810 /* webviewSwift */ = {
 			isa = PBXGroup;
 			children = (
-				8707CC9822AEE7700026D86A /* GoogleService-Info.plist */,
+				8742B2EF229EE50F00F9050E /* GoogleService-Info.plist */,
 				87BE5BF92295AEC800974DCE /* webviewSwift.entitlements */,
 				87770ED9228F7A0B00D0E0BA /* pushio_config_debug.json */,
 				87770EDA228F7A0B00D0E0BA /* pushio_config.json */,
@@ -284,6 +286,9 @@
 					87A13A1B220CCE67002F5810 = {
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -329,7 +334,7 @@
 				87A13A25220CCE67002F5810 /* Main.storyboard in Resources */,
 				87770EDC228F7A0B00D0E0BA /* pushio_config.json in Resources */,
 				87770EDB228F7A0B00D0E0BA /* pushio_config_debug.json in Resources */,
-				8707CC9922AEE7700026D86A /* GoogleService-Info.plist in Resources */,
+				8742B2F0229EE50F00F9050E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8742B2F1229EE50F00F9050E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8742B2F2229EE50F00F9050E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

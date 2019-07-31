@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
         #if DEBUG
             PushIOManager.sharedInstance().setLoggingEnabled(true);
@@ -36,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         var accountToken: String
         
         #if DEBUG
-            apiKey = "ABEkHtKmETYlp18AtmtPePxcM"
+            apiKey = "ABEqkQjw5aUGotCPfN-s4TR1Q"
             accountToken = "ABEkZImuwAycobNXj3k9dLNDM"
         #else
-            apiKey = "ABEmLsZwDpym4ediWuPAq9vQE"
+            apiKey = "ABEni6OOHSFx4Pd3xbLt5TSUg"
             accountToken = "ABEkZImuwAycobNXj3k9dLNDM"
         #endif
         
@@ -59,7 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             /*print("Registration Sucessful")
                             print("Registered \(PushIOManager.sharedInstance().registerUserID(deviceToken))")
                             print("Registered \(String(describing: PushIOManager.sharedInstance()?.getUserID()))")*/
-                            print("Wait for it")
                         } else {
                             print("Unable to register, reason \(String(describing: regError))")
                         }
@@ -124,5 +124,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
 }
 
